@@ -26,3 +26,25 @@ Utworzenie nowego projektu Amplify
 amplify init
 amplify add hosting
 ```
+
+Instalacja bibliotek Amplify dla react-a
+```
+npm install aws-amplify @aws-amplify/ui-react
+```
+
+Utwórz plik src/index.js i dodaj następuję trzy linie poniżej ostatniego importowanego elementu
+```
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
+```
+
+Zaimportuj elementy uwierzytelniający w pliku src/App.js
+```
+import { withAuthenticator } from '@aws-amplify/ui-react'
+```
+
+Wykorzystaj funkcjonalność 'wrappera' aby otoczyć główny element aplikacji (src/App.js) wraperem uwierzytelniającym.
+```
+export default withAuthenticator(withStyles(styles)(App))
+```
