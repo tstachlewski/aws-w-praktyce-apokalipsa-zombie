@@ -37,9 +37,12 @@ Aktualizacja plików storny
 ```
 cd ~/environment/zombie-application
 
-aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-4/frontend/src/Messages.js src/Messages.js
-aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-4/frontend/src/Messages.css src/Messages.css
+aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-5/frontend/src/Messages.js src/Messages.js
+aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-5/frontend/src/Messages.css src/Messages.css
+```
 
+Commit od repozytorium
+```
 git add -A
 git commit -m "new changes"
 git push
