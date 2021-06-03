@@ -1,141 +1,41 @@
-<!DOCTYPE html>
+
+Przykładowy skrypt "User Data" (dla "Amazon Linux 2"):
+
+```
+#!/bin/bash
+sudo yum update -y
+sudo yum install php httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo su
+
+cat <<EOF> /var/www/html/index.html
 <html>
-<head>
-	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.4.7.min.js"></script>
-<meta charset="utf-8">
-<title>Display Webcam Stream</title>
-
-<style>
-#container {
-	margin: 0px auto;
-	width: 500px;
-	height: 375px;
-	border: 10px #333 solid;
-}
-#videoElement {
-	width: 500px;
-	height: 375px;
-	background-color: #666;
-}
-
-.myButton {
-	box-shadow:inset 0px 0px 15px 3px #23395e;
-	background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
-	background-color:#2e466e;
-	border-radius:17px;
-	border:1px solid #1f2f47;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:22px;
-	padding:5px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #263666;
-}
-.myButton:hover {
-	background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-	background-color:#415989;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}
-
-
-</style>
-</head>
-
-<body>
-
-<div id="container">
-	<video autoplay="true" id="videoElement"></video>
-	<br/><br/>
-	<center><a id="btn-capture" class="myButton">SCREENSHOT</a>
-		Category: <input id="tabel" type="text"></center>
-</div>
-
-<br/><br/><br/>
-
-<table id="screenshots"></table>
-<br/><br/><br/><br/>
-<canvas id="capture" width="320" height="240"></canvas>
-
-<script>
-
-AWS.config.region = 'eu-west-1';
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-		IdentityPoolId: 'eu-west-1:99bb5895-bb79-43ba-92c1-0632971f5c71',
-});
-var s3 = new AWS.S3({apiVersion: '2006-03-01'});
-
-
-
-var video = document.querySelector("#videoElement");
-
-if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-    })
-    .catch(function (err0r) {
-      console.log("Something went wrong!");
-    });
-}
-
-var btnCapture = document.getElementById( "btn-capture" );
-var stream = document.getElementById( "videoElement" );
-var capture = document.getElementById( "capture" );
-var screenshots = document.getElementById( "screenshots" );
-var screenshotNumber = 0;
-var row;
-
-btnCapture.addEventListener( "click", captureSnapshot );
-
-function captureSnapshot() {
-
-	screenshotNumber = screenshotNumber + 1;
-	var label = document.getElementById("myText").value
-
-	var ctx = capture.getContext( '2d' );
-
-
-	ctx.drawImage( stream, 0, 0, capture.width, capture.height );
-
-	img.src		= capture.toDataURL( "image/png" );
-	img.width	= 240;
-
-	if ((screenshotNumber-1) % 5 == 0) {
-		row = screenshots.insertRow(0);
-	}
-
-	var cell = row.insertCell(0);
-	var snapshotId = 'snapshot' + screenshotNumber;
-	console.log(snapshotId);
-	cell.innerHTML = "<div id='" + snapshotId +"'></div>";
-	document.getElementById( snapshotId ).innerHTML = '';
-	document.getElementById( snapshotId ).appendChild( img );
-}
-
-function dataURItoBlob( dataURI ) {
-
-	var byteString = atob( dataURI.split( ',' )[ 1 ] );
-	var mimeString = dataURI.split( ',' )[ 0 ].split( ':' )[ 1 ].split( ';' )[ 0 ];
-
-	var buffer	= new ArrayBuffer( byteString.length );
-	var data	= new DataView( buffer );
-
-	for( var i = 0; i < byteString.length; i++ ) {
-
-		data.setUint8( i, byteString.charCodeAt( i ) );
-	}
-
-	return new Blob( [ buffer ], { type: mimeString } );
-}
-
-
-
-
-</script>
-</body>
+	<body>
+    <br/><br/><br/>
+    <div style="text-align:center;">
+      <img src="https://awspoland.s3-eu-west-1.amazonaws.com/cloud.png" align="middle">
+      <h1> Cloudy page!!!</h1>
+    </div>
+	</body>
 </html>
+EOF
+```
+
+
+Pierwsze kroki z AWS CLI:
+
+```
+aws ec2 describe-instances
+
+aws ec2 describe-instances --query "Reservations[*].Instances[*].InstanceId"
+
+aws ec2 describe-instances --query "Reservations[*].Instances[*].InstanceId" --output table
+```
+Dokumentacja: https://docs.aws.amazon.com/cli/latest/reference/index.html#cli-aws
+
+
+Weryfikacja "kim" jestesmy
+```
+aws sts get-caller-identity --query Arn
+```
