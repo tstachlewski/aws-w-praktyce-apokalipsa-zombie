@@ -1,3 +1,9 @@
+Rozszerzenie wielkości przestrzeni dyskowej
+```
+lsblk
+sudo growpart /dev/xvda 1
+```
+
 Pobranie pliku mikrousługi kontenerowej
 ```
 cd ~/environment/
