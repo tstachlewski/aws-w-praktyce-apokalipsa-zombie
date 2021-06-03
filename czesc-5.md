@@ -2,6 +2,7 @@ Rozszerzenie wielkości przestrzeni dyskowej
 ```
 lsblk
 sudo growpart /dev/xvda 1
+sudo xfs_growfs -d /
 ```
 
 Pobranie pliku mikrousługi kontenerowej
@@ -14,6 +15,22 @@ aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-5/backend/message-mic
 unzip message-microservice.zip
 rm message-microservice.zip
 
+```
+
+Trust policy dla roli
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "tasks.apprunner.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
 ```
 
 Aktualizacja plików storny
