@@ -33,7 +33,7 @@ Trust policy dla roli
 }
 ```
 
-Aktualizacja plików storny
+Aktualizacja plików strony
 ```
 cd ~/environment/zombie-application
 
