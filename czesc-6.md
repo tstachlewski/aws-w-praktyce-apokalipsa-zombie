@@ -1,9 +1,15 @@
+Nazwy funkcji lambda:
+```
+getActiveUsers
+activeUserPing
+```
+
 Aktualizacja kodu źródłowego funkcji lambd
 ```
 cd ~/environment/zombie-application
 
-aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-6/backend/getActiveUsers-function/index.py amplify/backend/function/getActiveUsers/src/index.py
-aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-6/backend/activeUserPing-function/index.py amplify/backend/function/activeUserPing/src/index.py
+aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-6/backend/getActiveUsers-function/index.js amplify/backend/function/getActiveUsers/src/index.js
+aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-6/backend/activeUserPing-function/index.js amplify/backend/function/activeUserPing/src/index.js
 ```
 
 Instalacja AWS SDK
