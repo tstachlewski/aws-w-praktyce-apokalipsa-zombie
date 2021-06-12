@@ -10,3 +10,10 @@ cd ~/environment/zombie-application
 aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-8/frontend/Home.js src/Home.js
 aws s3 cp s3://masterclazz-zombie-apocalypse-content/czesc-8/frontend/Home.css src/Home.css
 ```
+
+Commit od repozytorium
+```
+git add -A
+git commit -m "new changes"
+git push
+```
