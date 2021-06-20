@@ -15,7 +15,7 @@ const firehose = new Firehose({
 var statsParams = {
   DeliveryStreamName: 'zombie-stats',
   Record: {
-    Data: "{\"user\": \"" + this.state.user + "\", \"time\":\"" + new Date() + "\", \"page\":\"" + "Home" + "\"}\n"
+    Data: "{\"user\": \"" + this.state.user + "\", \"time\":\"" + new Date() + "\", \"page\":\"" + "Home" + "\"}\\n"
   }
 };
 
